@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers | TravelEase</title>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">Travel<span>Ease</span></div>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/packages">Packages</a>
+        <a href="/admin">Admin Dashboard</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <div class="page-header">
+        <div>
+            <h1>Customers</h1>
+            <p>Manage registered customers in the tourism booking system.</p>
+        </div>
+
+        <a href="/customers/add">
+            <button type="button">+ Add Customer</button>
+        </a>
+    </div>
+
+    <section class="dashboard-card">
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Gender</th>
+                        <th>Date of Birth</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for customer in customers %}
+
+                    <tr>
+                        <td>{{ customer.customer_id }}</td>
+                        <td>{{ customer.full_name }}</td>
+                        <td>{{ customer.email }}</td>
+                        <td>{{ customer.phone }}</td>
+                        <td>{{ customer.gender }}</td>
+                        <td>{{ customer.date_of_birth }}</td>
+
+                        <td>
+                            <form
+                                method="POST"
+                                action="/customers/delete/{{ customer.customer_id }}"
+                                onsubmit="return confirm('Delete this customer?');"
+                            >
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>

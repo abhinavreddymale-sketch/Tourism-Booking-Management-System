@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelEase | Tourism Booking Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Travel<span>Ease</span></div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="#packages">Packages</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+        </div>
+
+        <a href="#packages" class="nav-btn">Explore Trips</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="eyebrow">SMART TOURISM MANAGEMENT</p>
+
+            <h1>Explore India.<br><span>Travel Better.</span></h1>
+
+            <p class="hero-text">
+                Discover curated travel packages, destinations, hotels and
+                transportation — all managed through one powerful booking system.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#packages" class="primary-btn">Explore Packages</a>
+                <a href="/api/test-db" class="secondary-btn">Test Database</a>
+            </div>
+
+            <div class="hero-stats">
+                <div>
+                    <strong>5+</strong>
+                    <span>Destinations</span>
+                </div>
+
+                <div>
+                    <strong>5+</strong>
+                    <span>Packages</span>
+                </div>
+
+                <div>
+                    <strong>24/7</strong>
+                    <span>Booking Access</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-card">
+            <div class="destination-image">
+                <div class="image-overlay"></div>
+                <div class="destination-info">
+                    <span>Featured Destination</span>
+                    <h2>Goa</h2>
+                    <p>Beach • Adventure • Relaxation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="packages">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">TRAVEL COLLECTION</p>
+                <h2>Popular Packages</h2>
+            </div>
+
+            <p>
+                Carefully designed packages for unforgettable journeys
+                across India.
+            </p>
+        </div>
+
+        <div class="package-grid">
+
+            <div class="package-card">
+                <div class="package-number">01</div>
+                <h3>Goa Beach Escape</h3>
+                <p>Relax on beautiful beaches and experience Goa's vibrant lifestyle.</p>
+                <div class="package-bottom">
+                    <strong>₹15,999</strong>
+                    <span>4 Days</span>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <div class="package-number">02</div>
+                <h3>Manali Adventure</h3>
+                <p>Explore mountains, adventure activities and scenic Himalayan views.</p>
+                <div class="package-bottom">
+                    <strong>₹18,999</strong>
+                    <span>5 Days</span>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <div class="package-number">03</div>
+                <h3>Royal Rajasthan</h3>
+                <p>Experience royal heritage, forts, culture and traditional cuisine.</p>
+                <div class="package-bottom">
+                    <strong>₹22,999</strong>
+                    <span>6 Days</span>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <div class="package-number">04</div>
+                <h3>Kerala Backwaters</h3>
+                <p>Discover peaceful backwaters, greenery and authentic Kerala experiences.</p>
+                <div class="package-bottom">
+                    <strong>₹19,999</strong>
+                    <span>5 Days</span>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <div class="package-number">05</div>
+                <h3>Kashmir Paradise</h3>
+                <p>Experience breathtaking valleys, lakes and the beauty of Kashmir.</p>
+                <div class="package-bottom">
+                    <strong>₹26,999</strong>
+                    <span>6 Days</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">SYSTEM FEATURES</p>
+                <h2>Everything in One Place</h2>
+            </div>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature">
+                <div class="feature-icon">01</div>
+                <h3>Easy Booking</h3>
+                <p>Create and manage travel bookings efficiently.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">02</div>
+                <h3>Package Management</h3>
+                <p>Manage destinations, hotels and transport packages.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">03</div>
+                <h3>Payment Tracking</h3>
+                <p>Track payment status and booking confirmation.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">04</div>
+                <h3>MySQL Powered</h3>
+                <p>All booking data is stored directly in MySQL.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <p class="eyebrow">ABOUT THE PROJECT</p>
+        <h2>Tourism Package & Travel Booking Management System</h2>
+        <p>
+            A database-driven tourism management platform designed to manage
+            customers, packages, destinations, hotels, transportation,
+            bookings and payments through an integrated system.
+        </p>
+    </section>
+
+    <footer>
+        <div class="logo">Travel<span>Ease</span></div>
+        <p>Tourism Package & Travel Booking Management System</p>
+        <p>© 2026 TravelEase</p>
+    </footer>
+
+</body>
+</html>
+
+<script>
+document.querySelectorAll(".package-card").forEach((card, index) => {
+    card.style.cursor = "pointer";
+
+    card.addEventListener("click", function () {
+        window.location.href = "/package/" + (index + 1);
+    });
+});
+</script>

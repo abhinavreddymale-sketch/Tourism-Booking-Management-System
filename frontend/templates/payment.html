@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment | TravelEase</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">Travel<span>Ease</span></div>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/packages">Packages</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <div class="payment-card">
+
+        <div class="payment-header">
+            <div class="success-icon">₹</div>
+            <h1>Complete Your Payment</h1>
+            <p>Secure your booking by completing the payment.</p>
+        </div>
+
+        <div class="payment-summary">
+            <div class="row">
+                <span>Booking ID</span>
+                <strong>#{{ booking.booking_id }}</strong>
+            </div>
+
+            <div class="row">
+                <span>Package</span>
+                <strong>{{ booking.package_name }}</strong>
+            </div>
+
+            <div class="row">
+                <span>Travelers</span>
+                <strong>{{ booking.number_of_travelers }}</strong>
+            </div>
+
+            <div class="row total">
+                <span>Total Amount</span>
+                <strong>₹{{ "{:,.0f}".format(booking.total_amount) }}</strong>
+            </div>
+        </div>
+
+        <form method="POST" class="payment-form">
+
+            <label for="payment_method">Payment Method</label>
+
+            <select id="payment_method" name="payment_method" required>
+                <option value="">Select Payment Method</option>
+                <option value="UPI">UPI</option>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debit Card">Debit Card</option>
+                <option value="Net Banking">Net Banking</option>
+                <option value="Cash">Cash</option>
+            </select>
+
+            <button type="submit" class="btn primary">
+                Pay ₹{{ "{:,.0f}".format(booking.total_amount) }}
+            </button>
+
+        </form>
+
+        <a href="/package/{{ booking.package_id }}" class="back-link">
+            ← Back to Package
+        </a>
+
+    </div>
+
+</main>
+
+</body>
+</html>

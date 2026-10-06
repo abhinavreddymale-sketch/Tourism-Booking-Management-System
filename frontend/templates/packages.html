@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Packages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .packages-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .package-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .package-card h2 {
+            margin-bottom: 15px;
+        }
+
+        .package-card p {
+            margin: 8px 0;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="packages-container">
+
+        <h1>Travel Packages</h1>
+        <p>Explore our available tourism packages.</p>
+
+        {% if packages %}
+
+        <div class="packages-grid">
+
+            {% for package in packages %}
+
+            <div class="package-card">
+
+                <h2>{{ package.package_name }}</h2>
+
+                <p><strong>Duration:</strong>
+                    {{ package.duration_days }} days
+                </p>
+
+                <p><strong>Maximum Travelers:</strong>
+                    {{ package.max_travelers }}
+                </p>
+
+                <p class="price">
+                    ₹{{ "{:,.2f}".format(package.base_price) }}
+                </p>
+
+                <p>
+                    {{ package.description or "Enjoy an unforgettable travel experience." }}
+                </p>
+
+                <a class="btn"
+                   href="/package/{{ package.package_id }}">
+                    View Details
+                </a>
+
+                <a class="btn"
+                   href="/book/{{ package.package_id }}">
+                    Book Now
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty">
+            <h2>No packages available.</h2>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

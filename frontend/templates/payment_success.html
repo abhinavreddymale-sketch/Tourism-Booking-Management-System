@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful | TravelEase</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">Travel<span>Ease</span></div>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/packages">Packages</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <div class="payment-card">
+
+        <div class="payment-header">
+            <div class="success-icon">✓</div>
+
+            <div class="success-label">PAYMENT SUCCESSFUL</div>
+
+            <h1>Booking Confirmed!</h1>
+
+            <p>
+                Your payment has been successfully processed
+                and your trip is officially reserved.
+            </p>
+        </div>
+
+        <div class="payment-summary">
+
+            <div class="row">
+                <span>Booking ID</span>
+                <strong>#{{ booking.booking_id }}</strong>
+            </div>
+
+            <div class="row">
+                <span>Package</span>
+                <strong>{{ booking.package_name }}</strong>
+            </div>
+
+            <div class="row">
+                <span>Travelers</span>
+                <strong>{{ booking.number_of_travelers }}</strong>
+            </div>
+
+            <div class="row">
+                <span>Payment Method</span>
+                <strong>{{ payment_method }}</strong>
+            </div>
+
+            <div class="row">
+                <span>Transaction ID</span>
+                <strong>{{ transaction_id }}</strong>
+            </div>
+
+            <div class="row total">
+                <span>Amount Paid</span>
+                <strong>₹{{ "{:,.0f}".format(booking.total_amount) }}</strong>
+            </div>
+
+            <div class="row">
+                <span>Status</span>
+                <strong class="status-success">Successful</strong>
+            </div>
+
+        </div>
+
+        <div class="buttons">
+            <a href="/" class="btn primary">Back to Home</a>
+
+            <a href="/package/{{ booking.package_id }}"
+               class="btn secondary">
+                View Package
+            </a>
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>

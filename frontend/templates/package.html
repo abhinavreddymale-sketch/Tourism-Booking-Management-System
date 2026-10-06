@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ package.package_name }} | TravelEase</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f9fc;
+            color: #17213a;
+        }
+
+        nav {
+            height: 80px;
+            background: #101827;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .logo span {
+            color: #35d4b5;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 86%;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #11b89b;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .hero {
+            background: #101827;
+            color: white;
+            padding: 55px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+        }
+
+        .tag {
+            color: #35d4b5;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 18px;
+        }
+
+        .description {
+            color: #c4ccda;
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 800px;
+        }
+
+        .price {
+            margin-top: 30px;
+            font-size: 34px;
+            font-weight: 800;
+            color: #35d4b5;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e3e8ef;
+            border-radius: 18px;
+            padding: 28px;
+        }
+
+        .card h2 {
+            margin-bottom: 20px;
+            font-size: 21px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 12px 0;
+            border-bottom: 1px solid #edf0f4;
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            color: #68748b;
+        }
+
+        .value {
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .book-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 16px 30px;
+            background: #35d4b5;
+            color: #07131d;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 800;
+        }
+
+        @media (max-width: 700px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+
+            nav {
+                padding: 0 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Travel<span>Ease</span></div>
+
+    <div>
+        <a href="/">Home</a>
+        <a href="/book/{{ package.package_id }}">Packages</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <a class="back" href="/packages">← Back to Packages</a>
+
+    <section class="hero">
+        <div class="tag">TRAVEL PACKAGE</div>
+
+        <h1>{{ package.package_name }}</h1>
+
+        <p class="description">
+            {{ package.description }}
+        </p>
+
+        <div class="price">
+            ₹{{ "{:,.0f}".format(package.base_price) }}
+        </div>
+
+        <a class="book-btn" href="/book/{{ package.package_id }}">
+            Book This Package
+        </a>
+    </section>
+
+    <div class="grid">
+
+        <div class="card">
+            <h2>Package Information</h2>
+
+            <div class="row">
+                <span class="label">Duration</span>
+                <span class="value">{{ package.duration_days }} Days</span>
+            </div>
+
+            <div class="row">
+                <span class="label">Maximum Travelers</span>
+                <span class="value">{{ package.max_travelers }}</span>
+            </div>
+
+            <div class="row">
+                <span class="label">Base Price</span>
+                <span class="value">
+                    ₹{{ "{:,.0f}".format(package.base_price) }}
+                </span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Destination</h2>
+
+            <div class="row">
+                <span class="label">Destination</span>
+                <span class="value">{{ package.destination_name }}</span>
+            </div>
+
+            <div class="row">
+                <span class="label">City</span>
+                <span class="value">{{ package.city }}</span>
+            </div>
+
+            <div class="row">
+                <span class="label">State</span>
+                <span class="value">{{ package.state }}</span>
+            </div>
+
+            <div class="row">
+                <span class="label">Country</span>
+                <span class="value">{{ package.country }}</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Hotel</h2>
+
+            <div class="row">
+                <span class="label">Hotel</span>
+                <span class="value">{{ package.hotel_name }}</span>
+            </div>
+
+            <div class="row">
+                <span class="label">Rating</span>
+                <span class="value">{{ package.star_rating }} ★</span>
+            </div>
+
+            <div class="row">
+                <span class="label">Room Price</span>
+                <span class="value">
+                    ₹{{ "{:,.0f}".format(package.room_price) }}
+                </span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Transportation</h2>
+
+            <div class="row">
+                <span class="label">Type</span>
+                <span class="value">{{ package.transport_type }}</span>
+            </div>
+
+            <div class="row">
+                <span class="label">Provider</span>
+                <span class="value">{{ package.provider_name }}</span>
+            </div>
+
+            <div class="row">
+                <span class="label">Route</span>
+                <span class="value">
+                    {{ package.source }} → {{ package.transport_destination }}
+                </span>
+            </div>
+
+            <div class="row">
+                <span class="label">Transport Price</span>
+                <span class="value">
+                    ₹{{ "{:,.0f}".format(package.transport_price) }}
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
